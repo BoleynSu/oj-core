@@ -16,7 +16,7 @@ public class SQL extends Config {
 	private static Connection connection = null;
 
 	private static Connection getConnection() throws SQLException {
-		if (connection == null || connection.isClosed()) {
+		if (connection == null || connection.isClosed() || !connection.isValid(0)) {
 			try {
 				connection = DriverManager.getConnection("jdbc:mysql://" + DB_HOST + "/" + DB_NAME, DB_USER, DB_PASSWD);
 				connection.createStatement().execute("show tables;");
